@@ -5,39 +5,42 @@
 int stack[MAX];
 int top = -1;
 
-void push(int val)
-{
-    stack[++top] = val;
+// Push operation
+void push(int value) {
+    if (top == MAX - 1)
+        return;
+    stack[++top] = value;
 }
 
-void pop()
-{
-    if(top != -1)
-        top--;
+// Pop operation
+void pop() {
+    if (top == -1)
+        return;
+    top--;
 }
 
-int main()
-{
-    int n, m, x;
+int main() {
+    int n, m, i, value;
 
     scanf("%d", &n);
 
-    for(int i = 0; i < n; i++)
-    {
-        scanf("%d", &x);
-        push(x);
+    // Push n elements
+    for (i = 0; i < n; i++) {
+        scanf("%d", &value);
+        push(value);
     }
 
+    // Number of pops
     scanf("%d", &m);
 
-    for(int i = 0; i < m; i++)
-    {
+    // Perform pop operations
+    for (i = 0; i < m; i++) {
         pop();
     }
 
-    for(int i = top; i >= 0; i--)
-    {
-        printf("%d ", stack[i]);
+    // Print remaining stack from top to bottom
+    while (top != -1) {
+        printf("%d ", stack[top--]);
     }
 
     return 0;
